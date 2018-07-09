@@ -1,4 +1,4 @@
-const Chatbot = require('../lib/chatbot')
+const Chatbot = require('../lib/chatbot/chatbot')
 const expect = require('chai').expect
 
 const contactId = 'contactId'
