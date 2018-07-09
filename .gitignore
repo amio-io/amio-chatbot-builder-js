@@ -59,3 +59,16 @@ typings/
 
 # next.js build output
 .next
+
+# IntelliJ
+.idea
+*.iml
+*.ipr
+*.iws
+
+# VSCode
+.vscode
+
+# macos
+.DS_Store
+.idea/
