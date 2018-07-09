@@ -1,4 +1,4 @@
-const cache = require('../src/chatbot-cache')
+const cache = require('../lib/chatbot-cache')
 const expect = require('chai').expect
 
 const contactId = 'contactId'
