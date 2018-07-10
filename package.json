@@ -1,6 +1,6 @@
 {
   "name": "amio-chatbot-builder",
-  "version": "0.0.2-alpha",
+  "version": "0.0.4-alpha",
   "scripts": {
     "run-dev": "cross-env NODE_ENV=dev nodemon ./bin/server.js"
   },
