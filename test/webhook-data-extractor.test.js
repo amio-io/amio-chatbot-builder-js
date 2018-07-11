@@ -3,8 +3,20 @@ const expect = require('chai').expect
 
 describe('WebhookDataExtractor', () => {
 
+  const extractor = new WebhookDataExtractor()
+
+  it('_getPostbackPayload() returns payload', () => {
+
+    const payload = 'payload'
+    const result = extractor._getPostbackPayload({
+      data: {
+        postback: {payload}
+      }
+    })
+    expect(result).to.eql(payload)
+  })
+
   it('_getContactId() returns contactId', () => {
-    const extractor = new WebhookDataExtractor()
     const contactId = 'contactId'
     const result = extractor._getContactId({
       data: {
@@ -15,7 +27,6 @@ describe('WebhookDataExtractor', () => {
   })
 
   it('_getChannelId() returns channelId', () => {
-    const extractor = new WebhookDataExtractor()
     const channelId = 'channelId'
     const result = extractor._getChannelId({
       data: {
