@@ -1,12 +1,12 @@
-const Interceptor = require('../lib/chatbot/interceptor')
+const WebhookDataExtractor = require('../lib/chatbot/webhook-data-extractor')
 const expect = require('chai').expect
 
-describe('Interceptor', () => {
+describe('WebhookDataExtractor', () => {
 
   it('_getContactId() returns contactId', () => {
-    const interceptor = new Interceptor()
+    const extractor = new WebhookDataExtractor()
     const contactId = 'contactId'
-    const result = interceptor._getContactId({
+    const result = extractor._getContactId({
       data: {
         contact: {id: contactId}
       }
@@ -15,9 +15,9 @@ describe('Interceptor', () => {
   })
 
   it('_getChannelId() returns channelId', () => {
-    const interceptor = new Interceptor()
+    const extractor = new WebhookDataExtractor()
     const channelId = 'channelId'
-    const result = interceptor._getChannelId({
+    const result = extractor._getChannelId({
       data: {
         channel: {id: channelId}
       }
