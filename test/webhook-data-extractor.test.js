@@ -5,6 +5,17 @@ describe('WebhookDataExtractor', () => {
 
   const extractor = new WebhookDataExtractor()
 
+  it('_getContent() returns content', () => {
+
+    const content = 'content'
+    const result = extractor._getContent({
+      data: {
+        content
+      }
+    })
+    expect(result).to.eql(content)
+  })
+
   it('_getPostbackPayload() returns payload', () => {
 
     const payload = 'payload'
