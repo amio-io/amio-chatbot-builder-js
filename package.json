@@ -2,7 +2,8 @@
   "name": "amio-chatbot-builder",
   "version": "0.0.14-alpha",
   "scripts": {
-    "run-dev": "cross-env NODE_ENV=dev nodemon ./bin/server.js"
+    "run-dev": "cross-env NODE_ENV=dev nodemon ./bin/server.js",
+    "test": "mocha \"test/**/*.test.js\""
   },
   "dependencies": {
     "CBuffer": "2.0.0",
