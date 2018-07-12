@@ -1,5 +1,5 @@
 module.exports.Chatbot = require('./lib/chatbot/chatbot')
 module.exports.State = require('./lib/chatbot/state')
-moduel.exports.ErrorNextState = require('./lib/chatbot/error-next.state')
+module.exports.ErrorNextState = require('./lib/chatbot/error-next.state')
 module.exports.Interceptor = require('./lib/chatbot/interceptor')
 module.exports.chatbotCache = require('./lib/chatbot/chatbot-cache')
