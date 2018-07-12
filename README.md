@@ -116,18 +116,39 @@ module.exports = router
 
 ### Advanced setup
 
+#### State transitions - static vs. dynamic 
+
+**Static transitions** between states are known from the app startup (or from the compilation). They are defined as `chatbot.addPostaback()` or as `state.addNextState()`.
+
+**Dynamic transitions** between states are decided either in `state.execute()` or anywhere you call `chatbotCache.setNextState()`. 
+You can run a state immediately without having to wait for another webhook if you return it from `state.execute()`. 
+
+```javascript
+class MyState extends State {
+  
+  execute(channelId, contactId, {data}){
+    if(data.content) { 
+      console.log('I will execute YourState right now!')
+      return new YourState() 
+    } 
+    
+    console.log('just log') 
+  }
+}
+``` 
+
 #### Interceptors
 
-Interceptors are used to influence received webhook events either *before* or *after* a state is executed.
-
+Interceptors are used to influence received webhook events either before or after a state is executed. 
 An interceptor is a class that extends `require('amio-chatbot-builder').Interceptor`.
-
 Register interceptors using `chatbot.setInterceptors([interceptor1, ...])`
+
+[SEE EXAMPLE](docs/interceptors.md) .
 
 Method  | Params | Description
 ------- | ------ | -----------  
-before | channelId<br/>contactId<br/>[webhook](https://docs.amio.io/v1.0/reference#section-webhook-content)| `before()` is executed before the state itself. Return `false` if you wish to prevent the state execution. No other interceptors will be run either.
-after | channelId<br/>contactId<br/>[webhook](https://docs.amio.io/v1.0/reference#section-webhook-content)| `after()` is executed after the state execution. All registered interceptors are always executed.
+before | channelId<br/>contactId<br/>[webhook](https://docs.amio.io/v1.0/reference#section-webhook-content)| `before()` is executed before the state itself. Return `false` if you wish to prevent the state execution. No other interceptors will be run either.<br/>You can also change state using `chatbotCache.setNextState(newState)`.
+after | channelId<br/>contactId<br/>[webhook](https://docs.amio.io/v1.0/reference#section-webhook-content)| `after()` is executed after the state execution. It good for a clean up. All registered interceptors are always executed. 
 
-
-
+TODO chatbotCache
+TODO state machine picture with echo.state and postback
