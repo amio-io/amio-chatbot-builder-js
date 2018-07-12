@@ -124,7 +124,8 @@ An interceptor is a class that extends `require('amio-chatbot-builder').Intercep
 
 Register interceptors using `chatbot.setInterceptors([interceptor1, ...])`
 
-Method | Params | Description 
+Method  | Params | Description
+------- | ------ | -----------  
 before | channelId<br/>contactId<br/>[webhook](https://docs.amio.io/v1.0/reference#section-webhook-content)| `before()` is executed before the state itself. Return `false` if you wish to prevent the state execution. No other interceptors will be run either.
 after | channelId<br/>contactId<br/>[webhook](https://docs.amio.io/v1.0/reference#section-webhook-content)| `after()` is executed after the state execution. All registered interceptors are always executed.
 
