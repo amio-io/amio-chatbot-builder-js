@@ -45,7 +45,7 @@ class EchoState extends State {
   async execute(channelId, contactId, webhook) {
     const {data} = webhook
     const payload = data.content ? data.content.payload : data.postback.payload
-    await this._sendMessage(channelId, contactId, data.postback.payload)
+    await this._sendMessage(channelId, contactId, payload)
   }
   
   async _sendMessage(channelId, contactId, text){
@@ -118,7 +118,15 @@ module.exports = router
 
 #### Interceptors
 
-// TODO
+Interceptors are used to influence received webhook events either *before* or *after* a state is executed.
 
- 
+An interceptor is a class that extends `require('amio-chatbot-builder').Interceptor`.
+
+Register interceptors using `chatbot.setInterceptors([interceptor1, ...])`
+
+Method | Params | Description 
+before | channelId<br/>contactId<br/>[webhook](https://docs.amio.io/v1.0/reference#section-webhook-content)| `before()` is executed before the state itself. Return `false` if you wish to prevent the state execution. No other interceptors will be run either.
+after | channelId<br/>contactId<br/>[webhook](https://docs.amio.io/v1.0/reference#section-webhook-content)| `after()` is executed after the state execution. All registered interceptors are always executed.
+
+
 
