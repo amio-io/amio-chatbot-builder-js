@@ -96,7 +96,8 @@ After [setting up Amio webhooks](https://github.com/amio-io/amio-sdk-js#webhooks
 
 ```javascript
 // file router.js
-// imports and setup...
+const express = require('express')
+const router = express.Router()
 const chatbot = require('./path/to/my-chatbot.js')
 const WebhookRouter = require('amio-sdk-js').WebhookRouter
 
