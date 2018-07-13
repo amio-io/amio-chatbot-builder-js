@@ -1,5 +1,7 @@
 # amio-chatbot-builder-js
 
+[![npm version](https://badge.fury.io/js/amio-chatbot-builder.svg)](https://badge.fury.io/js/amio-chatbot-builder)
+
 **!!WARNING!!** 
 
 This project is in **Alpha**. We will very likely make breaking changes in this project.
@@ -114,15 +116,26 @@ router.post('/webhooks/amio', (req, res) => amioWebhookRouter.handleEvent(req, r
 module.exports = router
 ```
 
-
-
-
-
 ### Chatbot
 
 Chatbot represents a state machine. The most important methods you'll be using are `chatbot.runNextState()` and `chatbot.runPostback()`.
 
-// TODO inheritace vs composition  
+You can set it up using either inheritance or composition:
+```javascript
+//Inheritance
+class MyChatbot extends Chatbot {
+  constructor(){
+    super()
+    this.addPostback()
+    // ...
+  }
+}
+
+// Composition
+const chatbot = new Chatbot()
+chatbot.addPostback()
+// ...
+```  
 
 Method  | Params | Description
 ------- | ------ | -----------  
@@ -131,7 +144,9 @@ addPostback  | key<br/>state | Registers a state that will be invoked after post
 runNextState | [webhook](https://docs.amio.io/v1.0/reference#section-webhook-content) | How it works:<br/>&emsp;1. Iterate all interceptors\` `before()`.<br/>&emsp;2. Keep executing states while `state.execute()` returns a state.<br/>&emsp;3. Iterate all interceptors\` `after()`.<br/><br />**Warning -** If an interceptor returns false, go directly to step 3.   
 runPostback | [webhook](https://docs.amio.io/v1.0/reference#section-webhook-content) | Picks a correct state that was registered using `chatbot.addPostback()`. Then it executes `chatbot.runNextState()`    
 setErrorPostbackState | state | State that is executed if no postback is matching the key registered in `chatbot.addPostback(key, state)`.
-setInterceptors | array(interceptor) interceptors | Sets the whole interceptor chain. The first interceptor is to be run first. 
+setInitialState | state | If no postback starts the chatbot, the initial state will be executed as the very first state.  
+setInterceptors | array(interceptor) interceptors | Sets the whole interceptor chain. The first interceptor is to be run first.
+setPostbackKeyExtractor | function | Normalizes postback key so that it can be used to find a correct. It's useful if you're passing some data in postback like `'POSTBACK:ARBITRARY_DATA'`. In this case, you would register a state as `chatbot.addpostback('POSTBACK', state)`<br/><br/>It accepts webhook.data.postback.payload as the function argument. 
 
 ### State transitions - static vs. dynamic 
 
@@ -182,6 +197,7 @@ before | channelId<br/>contactId<br/>[webhook](https://docs.amio.io/v1.0/referen
 after | channelId<br/>contactId<br/>[webhook](https://docs.amio.io/v1.0/reference#section-webhook-content)| `after()` is executed after the state execution. It good for a clean up. All registered interceptors are always executed. 
 
 
+TODO state
 TODO postback
 TODO chatbotCache
 TODO state machine picture with echo.state and postback
