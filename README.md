@@ -6,6 +6,22 @@
 
 This project is in **Alpha**. We will very likely make breaking changes in this project.
 
+Let us know how to improve this library. We'll be more than happy if you report any issues or even create pull requests. ;-)
+
+- Installation
+- Usage
+  - Prerequisities
+  - Basic setup
+    - 1. Create state
+    - 2. Setup chatbot
+    - 3. React to webhooks
+- Chatbot
+- State
+  - State transitions - static vs. dynamic
+- Cache
+- Interceptor
+- How to get contactId/channelId
+  
 ## Installation
 
 ```bash
@@ -116,7 +132,7 @@ router.post('/webhooks/amio', (req, res) => amioWebhookRouter.handleEvent(req, r
 module.exports = router
 ```
 
-### Chatbot
+## Chatbot
 
 Chatbot represents a state machine. The most important methods you'll be using are `chatbot.runNextState()` and `chatbot.runPostback()`.
 
@@ -148,7 +164,7 @@ setInitialState | [state](https://github.com/amio-io/amio-chatbot-builder-js#sta
 setInterceptors | array([interceptor](https://github.com/amio-io/amio-chatbot-builder-js#interceptor)) interceptors | Sets the whole interceptor chain. The first interceptor is to be run first.
 setPostbackKeyExtractor | function | Normalizes postback key so that it can be used to find a correct. It's useful if you're passing some data in postback like `'POSTBACK:ARBITRARY_DATA'`. In this case, you would register a state as `chatbot.addpostback('POSTBACK', state)`<br/><br/>It accepts webhook.data.postback.payload as the function argument. 
 
-### State
+## State
 
 State holds all the steps a chatbot shall do upon receiving a webhook. It's a reusable piece of logic. 
 Generally, one state will consist of several 'message sends'. 
@@ -186,7 +202,7 @@ class MyState extends State {
 }
 ``` 
 
-### Cache
+## Cache
 
 Chatbot uses a cache that is referenced in code like `chatbotCache`. It keeps temporary data about a contact. 
 The contact is always identified by `contactId`. You can use it to store and retrieve your data using `chatbot.set()`
@@ -197,6 +213,7 @@ By default, the cache stores:
 - next state - `chatbot.setNextState()`
 - last 20 states `chatbot.getPastStates()`
 
+
 Method  | Params | Description
 ------- | ------ | -----------
 get | contactId<br/>key<br/>defaultValue = null | Returns a value for a `key` of contact with `contactId`.   
@@ -206,7 +223,7 @@ getPastStates | contactId | Returns last 20 states executed for contact `contact
 reset | | Clears the cache.
 set | contactId<br/>key<br/>value | Add `value` to a `key` of contact with `contactId`.
 
-### Interceptor
+## Interceptor
 
 Interceptors are used to influence received webhook events either before or after a state is executed. 
 An interceptor is a class that extends `require('amio-chatbot-builder').Interceptor`.
@@ -227,7 +244,7 @@ Method  | Params | Description
 before | channelId<br/>contactId<br/>[webhook](https://docs.amio.io/v1.0/reference#section-webhook-content)| `before()` is executed before the state itself. Return `false` if you wish to prevent the state execution. No other interceptors will be run either.<br/>You can also change state using `chatbotCache.setNextState(newState)`.
 after | channelId<br/>contactId<br/>[webhook](https://docs.amio.io/v1.0/reference#section-webhook-content)| `after()` is executed after the state execution. It good for a clean up. All registered interceptors are always executed. 
 
-### How to get contactId/channelId
+## How to get contactId/channelId
 
 `contactId`/`channelId` can be obtained from every [webhook](https://docs.amio.io/v1.0/reference#section-webhook-content). We are trying to resolve them 
 for you and pass to all methods where they may be needed frequently like `state.execute(channelId, contactId, webhook)`.
