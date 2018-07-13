@@ -207,10 +207,18 @@ Method  | Params | Description
 before | channelId<br/>contactId<br/>[webhook](https://docs.amio.io/v1.0/reference#section-webhook-content)| `before()` is executed before the state itself. Return `false` if you wish to prevent the state execution. No other interceptors will be run either.<br/>You can also change state using `chatbotCache.setNextState(newState)`.
 after | channelId<br/>contactId<br/>[webhook](https://docs.amio.io/v1.0/reference#section-webhook-content)| `after()` is executed after the state execution. It good for a clean up. All registered interceptors are always executed. 
 
+### How to get contactId/channelId
 
-TODO state
+`contactId`/`channelId` can be obtained from every [webhook](https://docs.amio.io/v1.0/reference#section-webhook-content). We are trying to resolve them 
+for you and pass to all methods where they may be needed frequently like `state.execute(channelId, contactId, webhook)`.
+
+```javascript
+const contactId = webhook.data.contact.id
+const channelId = webhook.data.channel.id
+```
+
+
 TODO postback
 TODO chatbotCache
 TODO state machine picture with echo.state and postback
-TODO add content
-TODO section - where to get contactId/channelId. Then link the section to args contactId/channelId  
+TODO  Then link the section to args contactId/channelId  
