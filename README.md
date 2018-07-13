@@ -4,7 +4,7 @@
 
 **!!WARNING!!** 
 
-This project is in **Alpha**. We will very likely make breaking changes in this project.
+This project is in **Alpha**. We will most likely make breaking changes in this project.
 
 Let us know how to improve this library. We'll be more than happy if you report any issues or even create pull requests. ;-)
 
