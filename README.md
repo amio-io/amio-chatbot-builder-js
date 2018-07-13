@@ -12,9 +12,9 @@ Let us know how to improve this library. We'll be more than happy if you report 
 - Usage
   - Prerequisities
   - Basic setup
-    - 1. Create state
-    - 2. Setup chatbot
-    - 3. React to webhooks
+    - [1. Create state]()
+    - [2. Setup chatbot]()
+    - [3. React to webhooks]()
 - Chatbot
 - State
   - State transitions - static vs. dynamic
