@@ -186,6 +186,26 @@ class MyState extends State {
 }
 ``` 
 
+### Cache
+
+Chatbot uses a cache that is referenced in code like `chatbotCache`. It keeps temporary data about a contact. 
+The contact is always identified by `contactId`. You can use it to store and retrieve your data using `chatbot.set()`
+and `chatbot.get()`.
+
+By default, the cache stores:
+- last 100 clients (LRU)
+- next state - `chatbot.setNextState()`
+- last 20 states `chatbot.getPastStates()`
+
+Method  | Params | Description
+------- | ------ | -----------
+get | contactId<br/>key<br/>defaultValue = null | Returns a value for a `key` of contact with `contactId`.   
+getLastState | contactId | Returns last visited state.
+getNextState | contactId | Returns the next state that will be executed by chatbot.
+getPastStates | contactId | Returns last 20 states executed for contact `contactId`.
+reset | | Clears the cache.
+set | contactId<br/>key<br/>value | Add `value` to a `key` of contact with `contactId`.
+
 ### Interceptor
 
 Interceptors are used to influence received webhook events either before or after a state is executed. 
@@ -216,9 +236,3 @@ for you and pass to all methods where they may be needed frequently like `state.
 const contactId = webhook.data.contact.id
 const channelId = webhook.data.channel.id
 ```
-
-
-TODO postback
-TODO chatbotCache
-TODO state machine picture with echo.state and postback
-TODO  Then link the section to args contactId/channelId  
