@@ -2,9 +2,9 @@
 
 [![npm version](https://badge.fury.io/js/amio-chatbot-builder.svg)](https://badge.fury.io/js/amio-chatbot-builder)
 
-**!!WARNING!!** 
-
-This project is in **Alpha**. We will most likely make breaking changes in this project.
+Amio Chatbot Builder is a simple bot framework that simulates a state machine chatbot. You can easily add NLP and analytics features though.
+We, are using it on our own chatbot projects. Just like [Amio](https://amio.io/), the framework aims to be platform agnostic. 
+Check out all the [supported platforms](https://docs.amio.io/v1.0/reference#messages).  
 
 Let us know how to improve this library. We'll be more than happy if you report any issues or even create pull requests. ;-)
 
