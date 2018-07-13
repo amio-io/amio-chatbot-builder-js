@@ -171,7 +171,7 @@ Generally, one state will consist of several 'message sends'.
 
 Method  | Params | Description
 ------- | ------ | -----------
-addNextState | [nextState](https://github.com/amio-io/amio-chatbot-builder-js#state)<br/>condition | Adds a [static transition](https://github.com/amio-io/amio-chatbot-builder-js#state-transitions---static-vs-dynamic) to a next state. 
+addNextState | [nextState](https://github.com/amio-io/amio-chatbot-builder-js#state)<br/>condition | Adds a [static transition](https://github.com/amio-io/amio-chatbot-builder-js#state-transitions---static-vs-dynamic) to a next state. If `condition(webhook)` return true. The state will be selected for execution. 
 execute | [channelId](https://github.com/amio-io/amio-chatbot-builder-js#how-to-get-contactidchannelid)<br/>[contactId](https://github.com/amio-io/amio-chatbot-builder-js#how-to-get-contactidchannelid)<br/>[webhook](https://docs.amio.io/v1.0/reference#section-webhook-content) | Executes state\`s logic. If you return a new state it will run immediately - it is so called [dynamic transition](https://github.com/amio-io/amio-chatbot-builder-js#state-transitions---static-vs-dynamic).  
 
 ### State transitions - static vs. dynamic 
