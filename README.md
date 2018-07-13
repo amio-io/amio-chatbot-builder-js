@@ -191,11 +191,11 @@ Register interceptors using `chatbot.setInterceptors([interceptor1, ...])`
 
 How the interceptors work:
 
-&emsp;1. Your server receives a webhook event.
-&emsp;2. You pass the event over to chatbot via `chatbot.runNextState(webhook)`
-&emsp;3. Chatbot first iterate all interceptors\` `before()`. The first interceptor that returns `false` breaks the interceptor chain and state execution is skipped. Go directly to step 5.
-&emsp;4. Chatbot keeps executing states while `state.execute()` returns a new state.
-&emsp;5. Chatbot iterates all interceptors\` `after()`.  
+1. Your server receives a webhook event.
+2. You pass the event over to chatbot via `chatbot.runNextState(webhook)`
+3. Chatbot first iterate all interceptors\` `before()`. The first interceptor that returns `false` breaks the interceptor chain and state execution is skipped. Go directly to step 5.
+4. Chatbot keeps executing states while `state.execute()` returns a new state.
+5. Chatbot iterates all interceptors\` `after()`.  
 
 [SEE EXAMPLE](docs/interceptors.md) .
 
