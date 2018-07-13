@@ -8,19 +8,19 @@ This project is in **Alpha**. We will most likely make breaking changes in this 
 
 Let us know how to improve this library. We'll be more than happy if you report any issues or even create pull requests. ;-)
 
-- Installation
-- Usage
-  - Prerequisities
-  - Basic setup
-    - [1. Create state]()
-    - [2. Setup chatbot]()
-    - [3. React to webhooks]()
-- Chatbot
-- State
-  - State transitions - static vs. dynamic
-- Cache
-- Interceptor
-- How to get contactId/channelId
+- [Installation](https://github.com/amio-io/amio-chatbot-builder-js#installation)
+- [Usage](https://github.com/amio-io/amio-chatbot-builder-js#usage)
+  - [Prerequisities](https://github.com/amio-io/amio-chatbot-builder-js#prerequisities)
+  - [Basic setup](https://github.com/amio-io/amio-chatbot-builder-js#basic-setup)
+    - [1. Create state](https://github.com/amio-io/amio-chatbot-builder-js#1-create-state)
+    - [2. Setup chatbot](https://github.com/amio-io/amio-chatbot-builder-js#2-setup-chatbot)
+    - [3. React to webhooks](https://github.com/amio-io/amio-chatbot-builder-js#3-react-to-webhooks)
+- [Chatbot](https://github.com/amio-io/amio-chatbot-builder-js#chatbot)
+- [State](https://github.com/amio-io/amio-chatbot-builder-js#state)
+  - [State transitions - static vs. dynamic](https://github.com/amio-io/amio-chatbot-builder-js#state-transitions---static-vs-dynamic)
+- [Cache](https://github.com/amio-io/amio-chatbot-builder-js#cache)
+- [Interceptor](https://github.com/amio-io/amio-chatbot-builder-js#interceptor)
+- [How to get contactId/channelId](https://github.com/amio-io/amio-chatbot-builder-js#how-to-get-contactidchannelid)
   
 ## Installation
 
@@ -171,8 +171,8 @@ Generally, one state will consist of several 'message sends'.
 
 Method  | Params | Description
 ------- | ------ | -----------
-addNextState | [nextState](https://github.com/amio-io/amio-chatbot-builder-js#state)<br/>condition | Adds a static transition to a next state. 
-execute | channelId<br/>contactId<br/>[webhook](https://docs.amio.io/v1.0/reference#section-webhook-content) | Executes state\`s logic. If you return a new state it will run immediately - it is so called dynamic transition.  
+addNextState | [nextState](https://github.com/amio-io/amio-chatbot-builder-js#state)<br/>condition | Adds a [static transition](https://github.com/amio-io/amio-chatbot-builder-js#state-transitions---static-vs-dynamic) to a next state. 
+execute | [channelId](https://github.com/amio-io/amio-chatbot-builder-js#how-to-get-contactidchannelid)<br/>[contactId](https://github.com/amio-io/amio-chatbot-builder-js#how-to-get-contactidchannelid)<br/>[webhook](https://docs.amio.io/v1.0/reference#section-webhook-content) | Executes state\`s logic. If you return a new state it will run immediately - it is so called [dynamic transition](https://github.com/amio-io/amio-chatbot-builder-js#state-transitions---static-vs-dynamic).  
 
 ### State transitions - static vs. dynamic 
 
@@ -216,12 +216,12 @@ By default, the cache stores:
 
 Method  | Params | Description
 ------- | ------ | -----------
-get | contactId<br/>key<br/>defaultValue = null | Returns a value for a `key` of contact with `contactId`.   
-getLastState | contactId | Returns last visited state.
-getNextState | contactId | Returns the next state that will be executed by chatbot.
-getPastStates | contactId | Returns last 20 states executed for contact `contactId`.
+get | [contactId](https://github.com/amio-io/amio-chatbot-builder-js#how-to-get-contactidchannelid)<br/>key<br/>defaultValue = null | Returns a value for a `key` of contact with `contactId`.   
+getLastState | [contactId](https://github.com/amio-io/amio-chatbot-builder-js#how-to-get-contactidchannelid) | Returns last visited state.
+getNextState | [contactId](https://github.com/amio-io/amio-chatbot-builder-js#how-to-get-contactidchannelid) | Returns the next state that will be executed by chatbot.
+getPastStates | [contactId](https://github.com/amio-io/amio-chatbot-builder-js#how-to-get-contactidchannelid) | Returns last 20 states executed for contact `contactId`.
 reset | | Clears the cache.
-set | contactId<br/>key<br/>value | Add `value` to a `key` of contact with `contactId`.
+set | [contactId](https://github.com/amio-io/amio-chatbot-builder-js#how-to-get-contactidchannelid)<br/>key<br/>value | Add `value` to a `key` of contact with `contactId`.
 
 ## Interceptor
 
@@ -241,8 +241,8 @@ How the interceptors work:
 
 Method  | Params | Description
 ------- | ------ | -----------  
-before | channelId<br/>contactId<br/>[webhook](https://docs.amio.io/v1.0/reference#section-webhook-content)| `before()` is executed before the state itself. Return `false` if you wish to prevent the state execution. No other interceptors will be run either.<br/>You can also change state using `chatbotCache.setNextState(newState)`.
-after | channelId<br/>contactId<br/>[webhook](https://docs.amio.io/v1.0/reference#section-webhook-content)| `after()` is executed after the state execution. It good for a clean up. All registered interceptors are always executed. 
+before | [channelId](https://github.com/amio-io/amio-chatbot-builder-js#how-to-get-contactidchannelid)<br/>[contactId](https://github.com/amio-io/amio-chatbot-builder-js#how-to-get-contactidchannelid)<br/>[webhook](https://docs.amio.io/v1.0/reference#section-webhook-content)| `before()` is executed before the state itself. Return `false` if you wish to prevent the state execution. No other interceptors will be run either.<br/>You can also change state using `chatbotCache.setNextState(newState)`.
+after | [channelId](https://github.com/amio-io/amio-chatbot-builder-js#how-to-get-contactidchannelid)<br/>[contactId](https://github.com/amio-io/amio-chatbot-builder-js#how-to-get-contactidchannelid)<br/>[webhook](https://docs.amio.io/v1.0/reference#section-webhook-content)| `after()` is executed after the state execution. It good for a clean up. All registered interceptors are always executed. 
 
 ## How to get contactId/channelId
 
