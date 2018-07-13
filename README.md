@@ -148,6 +148,13 @@ setInitialState | state | If no postback starts the chatbot, the initial state w
 setInterceptors | array(interceptor) interceptors | Sets the whole interceptor chain. The first interceptor is to be run first.
 setPostbackKeyExtractor | function | Normalizes postback key so that it can be used to find a correct. It's useful if you're passing some data in postback like `'POSTBACK:ARBITRARY_DATA'`. In this case, you would register a state as `chatbot.addpostback('POSTBACK', state)`<br/><br/>It accepts webhook.data.postback.payload as the function argument. 
 
+### State
+
+Method  | Params | Description
+------- | ------ | -----------
+addNextState | nextState<br/>condition |  
+execute | channelId<br/>contactId<br/>[webhook](https://docs.amio.io/v1.0/reference#section-webhook-content) | 
+
 ### State transitions - static vs. dynamic 
 
 **Static transitions** between states are known from the app startup (or from the compilation). They are defined as `chatbot.addPostback(key, state)` or as `state.addNextState(state, condition)`.
@@ -182,7 +189,8 @@ Interceptors are used to influence received webhook events either before or afte
 An interceptor is a class that extends `require('amio-chatbot-builder').Interceptor`.
 Register interceptors using `chatbot.setInterceptors([interceptor1, ...])`
 
-How the interceptors:
+How the interceptors work:
+
 &emsp;1. Your server receives a webhook event.
 &emsp;2. You pass the event over to chatbot via `chatbot.runNextState(webhook)`
 &emsp;3. Chatbot first iterate all interceptors\` `before()`. The first interceptor that returns `false` breaks the interceptor chain and state execution is skipped. Go directly to step 5.
@@ -201,3 +209,4 @@ TODO state
 TODO postback
 TODO chatbotCache
 TODO state machine picture with echo.state and postback
+TODO add content
