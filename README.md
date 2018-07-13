@@ -183,7 +183,7 @@ class MyState extends State {
 }
 ``` 
 
-### Interceptors
+### Interceptor
 
 Interceptors are used to influence received webhook events either before or after a state is executed. 
 An interceptor is a class that extends `require('amio-chatbot-builder').Interceptor`.
