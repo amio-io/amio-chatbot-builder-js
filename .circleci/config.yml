@@ -27,4 +27,4 @@ jobs:
 
       - run:
           name: Can publish to NPM?
-          command: npm info $npm_package_name version | npm-version-bump-checker
+          command: npm run-script can-publish-nix

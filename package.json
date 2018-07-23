@@ -3,7 +3,8 @@
   "version": "1.0.0-alpha",
   "scripts": {
     "run-dev": "cross-env NODE_ENV=dev nodemon ./bin/server.js",
-    "test": "mocha \"test/**/*.test.js\""
+    "test": "mocha \"test/**/*.test.js\"",
+    "can-publish-nix": "npm info $npm_package_name version | npm-version-bump-checker"
   },
   "dependencies": {
     "CBuffer": "2.0.0",
