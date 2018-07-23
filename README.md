@@ -20,6 +20,7 @@ Let us know how to improve this library. We'll be more than happy if you report 
   - [State transitions - static vs. dynamic](https://github.com/amio-io/amio-chatbot-builder-js#state-transitions---static-vs-dynamic)
 - [Cache](https://github.com/amio-io/amio-chatbot-builder-js#cache)
 - [Interceptor](https://github.com/amio-io/amio-chatbot-builder-js#interceptor)
+- [Logging](https://github.com/amio-io/amio-chatbot-builder-js#logging)
 - [How to get contactId/channelId](https://github.com/amio-io/amio-chatbot-builder-js#how-to-get-contactidchannelid)
   
 ## Installation
@@ -243,6 +244,15 @@ Method  | Params | Description
 ------- | ------ | -----------  
 before | [channelId](https://github.com/amio-io/amio-chatbot-builder-js#how-to-get-contactidchannelid)<br/>[contactId](https://github.com/amio-io/amio-chatbot-builder-js#how-to-get-contactidchannelid)<br/>[webhook](https://docs.amio.io/v1.0/reference#section-webhook-content)| `before()` is executed before the state itself. Return `false` if you wish to prevent the state execution. No other interceptors will be run either.<br/>You can also change state using `chatbotCache.setNextState(newState)`.
 after | [channelId](https://github.com/amio-io/amio-chatbot-builder-js#how-to-get-contactidchannelid)<br/>[contactId](https://github.com/amio-io/amio-chatbot-builder-js#how-to-get-contactidchannelid)<br/>[webhook](https://docs.amio.io/v1.0/reference#section-webhook-content)| `after()` is executed after the state execution. It good for a clean up. All registered interceptors are always executed. 
+
+## Logging
+
+If you want to enable logs, add namespace `amio-chatbot-builder-js:*` to your `DEBUG` environment variable.
+```
+process.env.DEBUG = 'your-project-namespace:*,amio-chatbot-builder-js:*'
+```
+
+For more details check [debug lib](https://github.com/visionmedia/debug) and the [logz.io wrapper](https://github.com/amio-io/logzio-node-debug).
 
 ## How to get contactId/channelId
 
