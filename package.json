@@ -1,9 +1,10 @@
 {
   "name": "amio-chatbot-builder",
-  "version": "1.0.0-alpha",
+  "version": "1.1.0-alpha",
   "scripts": {
     "run-dev": "cross-env NODE_ENV=dev nodemon ./bin/server.js",
-    "test": "mocha \"test/**/*.test.js\""
+    "test": "mocha \"test/**/*.test.js\"",
+    "can-publish-nix": "npm info $npm_package_name version | npm-version-bump-checker"
   },
   "dependencies": {
     "CBuffer": "2.0.0",
@@ -13,6 +14,7 @@
   },
   "devDependencies": {
     "chai": "4.1.2",
-    "mocha": "5.2.0"
+    "mocha": "5.2.0",
+    "npm-version-bump-checker": "1.0.4"
   }
 }
