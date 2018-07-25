@@ -121,7 +121,13 @@ const chatbot = require('./path/to/my-chatbot.js')
 const WebhookRouter = require('amio-sdk-js').WebhookRouter
 
 const amioWebhookRouter = new WebhookRouter({
-    secretToken: 'get secret at https://app.amio.io/administration/channels/{{CHANNEL_ID}}/webhook'
+    secrets: {
+      // CHANNEL_ID: SECRET
+      // get CHANNEL_ID at https://app.amio.io/administration/channels/
+      // get SECRET at https://app.amio.io/administration/channels/{{CHANNEL_ID}}/webhook
+      '15160185464897428':'thzWPzSPhNjfdKdfsLBEHFeLWW',
+      '48660483859995133':'fdsafJzSPhNjfdKdfsLBEjdfks'
+    }
 })
 
 amioWebhookRouter.onMessageReceived(async webhook => await chatbot.runNextState(webhook))
